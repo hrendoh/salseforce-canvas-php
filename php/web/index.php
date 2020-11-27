@@ -9,6 +9,7 @@ $consumer_secret = $_ENV['CANVAS_CONSUMER_SECRET'];
 
 if ($signedRequest == null || $consumer_secret == null) {
   echo "Error: Signed Request or Consumer Secret not found";
+  exit;
 }
 
 //decode the signedRequest
@@ -21,12 +22,14 @@ $encodedEnv = substr($signedRequest, $sep + 1);
 $calcedSig = base64_encode(hash_hmac("sha256", $encodedEnv, $consumer_secret, true));
 if ($calcedSig != $encodedSig) {
   echo "Error: Signed Request Failed.  Is the app in Canvas?";
+  exit;
 }
 
 // リクエストパラメータをデコード
 $sr = base64_decode($encodedEnv);
 $canvas_request = json_decode($sr);
 
+// Initialize Silex App
 $app = new Silex\Application();
 $app['debug'] = true;
 
@@ -42,9 +45,24 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 // Our web handlers
 
-$app->get('/', function () use ($app) {
+$app->post('/', function () use ($app, $canvas_request) {
+  $url = $canvas_request->client->instanceUrl . '/services/data/v50.0/query';
+
+  $http = new GuzzleHttp\Client;
+
+  $response = $http->get($url, [
+    'headers' => [
+      'Authorization' => 'Bearer ' . $canvas_request->client->oauthToken,
+    ],
+    'query' => ['q' => 'SELECT ID,NAME FROM ACCOUNT'],
+  ]);
+  $accounts = json_decode($response->getBody())->records;
+
   $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
+  return $app['twig']->render('index.twig', [
+    'user' => $canvas_request->context->user,
+    'accounts' => $accounts
+  ]);
 });
 
 $app->run();
