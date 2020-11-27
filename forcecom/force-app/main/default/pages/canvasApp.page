@@ -1,0 +1,3 @@
+<apex:page>
+  <apex:canvasApp developerName="Canvas_App" />
+</apex:page>

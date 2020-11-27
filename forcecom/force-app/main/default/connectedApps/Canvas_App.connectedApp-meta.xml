@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canvasConfig>
+        <accessMethod>Post</accessMethod>
+        <canvasUrl>https://morning-woodland-99878.herokuapp.com/</canvasUrl>
+        <locations>Visualforce</locations>
+        <samlInitiationMethod>None</samlInitiationMethod>
+    </canvasConfig>
+    <contactEmail>foo@example.com</contactEmail>
+    <label>Canvas App</label>
+    <oauthConfig>
+        <callbackUrl>https://example.com/callback</callbackUrl>
+        <consumerKey
+    >5a2db362df0a8ee3b4be9c0261043be81e5e310bc0969a108bf8c7ee68232309d257588567788e9c162f630a71c45ca85d9f95205faa3e85af3ed2aaa533160e</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <scopes>Basic</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <profileName>システム管理者</profileName>
+</ConnectedApp>
