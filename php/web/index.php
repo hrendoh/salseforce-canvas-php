@@ -43,8 +43,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
   'twig.path' => __DIR__ . '/views',
 ));
 
-// Our web handlers
+$app->extend('twig', function ($twig, $app) use ($canvas_request) {
+  $twig->addGlobal('canvas', $canvas_request);
+  return $twig;
+});
 
+// Our web handlers
 $app->post('/', function () use ($app, $canvas_request) {
   $url = $canvas_request->client->instanceUrl . '/services/data/v50.0/query';
 
@@ -60,7 +64,6 @@ $app->post('/', function () use ($app, $canvas_request) {
 
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig', [
-    'user' => $canvas_request->context->user,
     'accounts' => $accounts
   ]);
 });

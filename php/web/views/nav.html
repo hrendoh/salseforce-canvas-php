@@ -7,7 +7,11 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-right">
-        <a href="https://devcenter.heroku.com"><span class="glyphicon glyphicon-user"></span> {{ user.fullName }}</a>
+        <a href="https://devcenter.heroku.com">
+          <span class="glyphicon glyphicon-user"></span>
+          <span id="profile-name"></span>
+          <span>{{ canvas.context.user.fullName }}
+        </a>
       </li>
     </ul>
   </div>
