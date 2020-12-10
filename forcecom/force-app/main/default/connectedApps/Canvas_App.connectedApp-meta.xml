@@ -10,8 +10,7 @@
     <label>Canvas App</label>
     <oauthConfig>
         <callbackUrl>https://example.com/callback</callbackUrl>
-        <consumerKey
-    >5a2db362df0a8ee3b4be9c0261043be81e5e310bc0969a108bf8c7ee68232309d257588567788e9c162f630a71c45ca85d9f95205faa3e85af3ed2aaa533160e</consumerKey>
+        <consumerKey>5a2db362df0a8ee3b4be9c0261043be81e5e310bc0969a108bf8c7ee68232309d257588567788e9c162f630a71c45ca85d9f95205faa3e85af3ed2aaa533160e</consumerKey>
         <isAdminApproved>true</isAdminApproved>
         <isConsumerSecretOptional>false</isConsumerSecretOptional>
         <isIntrospectAllTokens>false</isIntrospectAllTokens>
